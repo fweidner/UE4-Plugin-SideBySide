@@ -3,12 +3,10 @@
 #include "CustomGameEngine.h"
 
 #include "SideBySideStereoRenderingDevice.h"
-//#include "ActiveStereoRenderingDevice.h"
 #include "Engine.h"
 
 /*
-[PROJECTNAME]
-wanna use me? add "GameEngine=/Script/Car2Simulate.StereoRendering.CustomGameEngine" to DefaultEngine.ini under [/Script/Engine.Engine]
+wanna use me? add "GameEngine=/Script/TestPlugin.StereoRendering.CustomGameEngine" to DefaultEngine.ini under [/Script/Engine.Engine]
 */
 
 bool UCustomGameEngine::InitializeHMDDevice()

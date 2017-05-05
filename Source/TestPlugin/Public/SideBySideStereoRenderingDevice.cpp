@@ -6,10 +6,10 @@
 #include "StereoDeviceProvider.h"
 
 USideBySideStereoRenderingDevice::USideBySideStereoRenderingDevice()
-	: FOVInDegrees(110)
+	: FOVInDegrees(50)
 	, Width(2560)
 	, Height(1600)
-{
+	{
 	static TAutoConsoleVariable<float> CVarEmulateStereoFOV(TEXT("r.StereoEmulationFOV"), 0, TEXT("FOV in degrees, of the imaginable HMD for stereo emulation"));
 	static TAutoConsoleVariable<int32> CVarEmulateStereoWidth(TEXT("r.StereoEmulationWidth"), 0, TEXT("Width of the imaginable HMD for stereo emulation"));
 	static TAutoConsoleVariable<int32> CVarEmulateStereoHeight(TEXT("r.StereoEmulationHeight"), 0, TEXT("Height of the imaginable HMD for stereo emulation"));

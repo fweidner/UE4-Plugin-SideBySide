@@ -1,0 +1,25 @@
+{
+	"FileVersion" : 3,
+	"Version" : 1,
+	"VersionName" : "1.0",
+	"FriendlyName" : "Side-by-Side Plugin",
+	"Description" : "",
+	"Category" : "Visualization",
+	"CreatedBy" : "Florian Weidner",
+	"CreatedByURL" : "http://www.tu-ilmenau.de/vwdg",
+	"DocsURL" : "",
+	"MarketplaceURL" : "",
+	"SupportURL" : "",
+	"CanContainContent" : true,
+	"IsBetaVersion" : true,
+	"Installed" : true,
+	"RequiresBuildPlatform" : false,
+	"Modules" :
+	[
+		{
+			"Name" : "TestPlugin",
+			"Type" : "Developer",
+			"LoadingPhase" : "Default"
+		}
+	]
+}

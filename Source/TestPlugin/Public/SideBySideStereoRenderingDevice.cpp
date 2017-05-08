@@ -3,7 +3,7 @@
 
 #include "SideBySideStereoRenderingDevice.h"
 #include "Engine.h"
-#include "StereoDeviceProvider.h"
+#include "UStereoDeviceProvider.h"
 
 USideBySideStereoRenderingDevice::USideBySideStereoRenderingDevice()
 	: FOVInDegrees(50)
@@ -29,7 +29,7 @@ USideBySideStereoRenderingDevice::USideBySideStereoRenderingDevice()
 		Height = FMath::Clamp(H, 100, 10000);
 	}
 
-	StereoDeviceProvider* tmp = StereoDeviceProvider::GetInstance();
+	UStereoDeviceProvider* tmp = UStereoDeviceProvider::GetInstance();
 	tmp->SetStereoDevice(this);
 }
 

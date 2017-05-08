@@ -2,7 +2,7 @@
 
 #include "CustomGameEngine.h"
 
-#include "SideBySideStereoRenderingDevice.h"
+#include "USideBySideStereoRenderingDevice.h"
 #include "Engine.h"
 
 /*

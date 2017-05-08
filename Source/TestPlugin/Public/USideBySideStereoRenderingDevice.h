@@ -11,6 +11,7 @@
 class USideBySideStereoRenderingDevice : public IStereoRendering
 {
 public:
+
 	float FOVInDegrees;
 	int32 Width, Height;
 
@@ -42,6 +43,7 @@ public:
 
 	float GetProjectionCenterOffset();
 	void SetProjectionCenterOffset(float projectionCenterOffset);
+
 
 
 private:

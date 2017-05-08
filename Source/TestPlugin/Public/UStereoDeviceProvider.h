@@ -1,17 +1,14 @@
 #pragma once
 
-#include "SideBySideStereoRenderingDevice.h"
-#include "UStereoDeviceProvider.generated.h"
+#include "USideBySideStereoRenderingDevice.h"
 
 
-UCLASS()
-class UStereoDeviceProvider : public UObject
+class UStereoDeviceProvider 
 {
 public:
 
-	GENERATED_BODY()
-
 	static UStereoDeviceProvider* GetInstance();
+
 	~UStereoDeviceProvider();
 
 	USideBySideStereoRenderingDevice* GetStereoDevice();

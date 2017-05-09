@@ -1,4 +1,4 @@
-#include "TestPlugin.h"
+#include "SideBySidePlugin.h"
 
 #include "USideBySideBPLibrary.h"
 #include "UStereoDeviceProvider.h"
@@ -87,4 +87,3 @@ void USideBySideBPLibrary::SetProjectionOffset(float _newProjectionOffset)
 		tmpDevice->SetProjectionCenterOffset(_newProjectionOffset);
 	}
 }
-

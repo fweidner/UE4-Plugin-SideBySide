@@ -1,4 +1,4 @@
-#include "TestPlugin.h"
+#include "SideBySidePlugin.h"
 
 #include "UStereoDeviceProvider.h"
 

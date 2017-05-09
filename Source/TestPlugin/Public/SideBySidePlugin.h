@@ -4,7 +4,7 @@
 
 #include "ModuleManager.h"
 
-class FTestPluginModule : public IModuleInterface
+class FSideBySidePluginModule : public IModuleInterface
 {
 public:
 

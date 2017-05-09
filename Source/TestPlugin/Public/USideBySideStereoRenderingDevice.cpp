@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "TestPlugin.h"
+#include "SideBySidePlugin.h"
 
 #include "USideBySideStereoRenderingDevice.h"
 #include "Engine.h"

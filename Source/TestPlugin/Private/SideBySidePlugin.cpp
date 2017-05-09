@@ -1,17 +1,17 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
-#include "TestPlugin.h"
+#include "SideBySidePlugin.h"
 
-#define LOCTEXT_NAMESPACE "FTestPluginModule"
+#define LOCTEXT_NAMESPACE "FSideBySidePluginModule"
 
-void FTestPluginModule::StartupModule()
+void FSideBySidePluginModule::StartupModule()
 {
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
 
 
 }
 
-void FTestPluginModule::ShutdownModule()
+void FSideBySidePluginModule::ShutdownModule()
 {
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
@@ -23,4 +23,4 @@ void FTestPluginModule::ShutdownModule()
 
 #undef LOCTEXT_NAMESPACE
 	
-IMPLEMENT_MODULE(FTestPluginModule, TestPlugin)
+IMPLEMENT_MODULE(FSideBySidePluginModule, SideBySidePlugin)

@@ -11,11 +11,11 @@
 	"MarketplaceURL": "",
 	"SupportURL": "",
 	"CanContainContent": true,
-	"IsBetaVersion": true,
+	"IsBetaVersion": false,
 	"Installed": true,
 	"Modules": [
 		{
-			"Name": "TestPlugin",
+			"Name": "SideBySidePlugin",
 			"Type": "Developer",
 			"LoadingPhase": "Default"
 		}

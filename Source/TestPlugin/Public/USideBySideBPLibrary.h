@@ -49,5 +49,4 @@ class USideBySideBPLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetProjectionOffset", Keywords = "Set Projection Offset"))
 		static void SetProjectionOffset(float _newProjectionOffset); //Updates the current projection center offset 
-
 };

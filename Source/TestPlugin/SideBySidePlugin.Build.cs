@@ -2,14 +2,14 @@
 
 using UnrealBuildTool;
 
-public class TestPlugin : ModuleRules
+public class SideBySidePlugin : ModuleRules
 {
-	public TestPlugin(TargetInfo Target)
+	public SideBySidePlugin(TargetInfo Target)
 	{
 		
 		PublicIncludePaths.AddRange(
 			new string[] {
-				"TestPlugin/Public"
+                "SideBySidePlugin/Public"
 				// ... add public include paths required here ...
 			}
 			);
@@ -17,7 +17,7 @@ public class TestPlugin : ModuleRules
 		
 		PrivateIncludePaths.AddRange(
 			new string[] {
-				"TestPlugin/Private",
+                "SideBySidePlugin/Private",
 				// ... add other private include paths required here ...
 			}
 			);

@@ -50,7 +50,7 @@ void USideBySideBPLibrary::SetEyeOffset(float _newEyeOffset)
 	}
 }
 
-void USideBySideBPLibrary::IncProjectionOffsetWithDelta(float _deltaOffset)
+void USideBySideBPLibrary::SetProjectionOffsetWithDelta(float _deltaOffset)
 {
 	float currOffset = 3791.f;
 

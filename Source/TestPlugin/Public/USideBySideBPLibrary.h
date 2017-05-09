@@ -29,11 +29,11 @@ class USideBySideBPLibrary : public UBlueprintFunctionLibrary
 
 
 	//Eye offset
-	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetEyeOffset with delta", Keywords = "Increment Eye Offset Delta"))
-	static void SetEyeOffsetWithDelta(float _deltaOffset); //Sets the current IPD x 0.5 using a delta
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetEyeOffset with delta", Keywords = "Set Eye Offset Delta"))
+		static void SetEyeOffsetWithDelta(float _deltaOffset); //Sets the current IPD x 0.5 using a delta
 
 	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "GetEyeOffset", Keywords = "Get Eye Offset"))
-	static float GetEyeOffset(); //Returns the current IPD x 0.5
+		static float GetEyeOffset(); //Returns the current IPD x 0.5
 
 	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetEyeOffset", Keywords = "Get Eye Offset Delta"))
 		static void SetEyeOffset(float _newEyeOffset); //Updates the current IPD x 0.5
@@ -41,8 +41,8 @@ class USideBySideBPLibrary : public UBlueprintFunctionLibrary
 
 	//Projection offset
 
-	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetProjectionOffset with delta", Keywords = "Increment Projection Offset Delta"))
-		static void IncProjectionOffsetWithDelta(float _deltaOffset); //Sets the current projection center offset using a delta
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetProjectionOffset with delta", Keywords = "Set Projection Offset Delta"))
+		static void SetProjectionOffsetWithDelta(float _deltaOffset); //Sets the current projection center offset using a delta
 
 	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "GetProjectionOffset", Keywords = "Get Projection Offset"))
 		static float GetProjectionOffset(); //returns the current projection center offset 

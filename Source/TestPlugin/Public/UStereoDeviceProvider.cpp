@@ -23,8 +23,6 @@ UStereoDeviceProvider* UStereoDeviceProvider::GetInstance()
 
 USideBySideStereoRenderingDevice* UStereoDeviceProvider::GetStereoDevice()
 {
-	GEngine->AddOnScreenDebugMessage(2, 5.f, FColor::FColor(111, 111, 111), "GetStereoDevice");
-
 	return MySBSStereoDevice;
 }
 

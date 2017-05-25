@@ -9,7 +9,7 @@ USideBySideStereoRenderingDevice::USideBySideStereoRenderingDevice()
 	: FOVInDegrees(50)
 	, Width(2560)
 	, Height(1600)
-	{
+{
 	static TAutoConsoleVariable<float> CVarEmulateStereoFOV(TEXT("r.StereoEmulationFOV"), 0, TEXT("FOV in degrees, of the imaginable HMD for stereo emulation"));
 	static TAutoConsoleVariable<int32> CVarEmulateStereoWidth(TEXT("r.StereoEmulationWidth"), 0, TEXT("Width of the imaginable HMD for stereo emulation"));
 	static TAutoConsoleVariable<int32> CVarEmulateStereoHeight(TEXT("r.StereoEmulationHeight"), 0, TEXT("Height of the imaginable HMD for stereo emulation"));
@@ -40,8 +40,12 @@ void USideBySideStereoRenderingDevice::AdjustViewRect(EStereoscopicPass StereoPa
 	{
 		X += SizeX;
 	}
-	GEngine->AddOnScreenDebugMessage(12, 1.f, FColor::Green, FString::Printf(TEXT("EyeOffset: %f"), EyeOffset));
-	GEngine->AddOnScreenDebugMessage(13, 1.f, FColor::Green, FString::Printf(TEXT("ProjectionCenterOffset: %f"), ProjectionCenterOffset));
+	if (bShowDebugMessage)
+	{
+		GEngine->AddOnScreenDebugMessage(12, 1.f, FColor::Green, FString::Printf(TEXT("EyeOffset: %f"), EyeOffset));
+		GEngine->AddOnScreenDebugMessage(13, 1.f, FColor::Green, FString::Printf(TEXT("ProjectionCenterOffset: %f"), ProjectionCenterOffset));
+	}
+
 }
 
 void USideBySideStereoRenderingDevice::CalculateStereoViewOffset(const enum EStereoscopicPass StereoPassType, const FRotator& ViewRotation, const float WorldToMeters, FVector& ViewLocation)
@@ -99,10 +103,10 @@ void USideBySideStereoRenderingDevice::RenderTexture_RenderThread(FRHICommandLis
 	RHICmdList.SetViewport(0, 0, 0, ViewportWidth, ViewportHeight, 1.0f);
 
 
-	//RHICmdList.SetBlendState(TStaticBlendState<>::GetRHI());
+	RHICmdList.SetBlendState(TStaticBlendState<>::GetRHI());
 	RHICmdList.SetRasterizerState(TStaticRasterizerState<>::GetRHI());
 	RHICmdList.SetDepthStencilState(TStaticDepthStencilState<false, CF_Always>::GetRHI());
-	//RHICmdList.Clear(true, FLinearColor::Black, false, 0, false, 0, FIntRect()); //HACK: untested for side-by-side mode
+	RHICmdList.ClearColorTexture(BackBuffer, FLinearColor::Black, FIntRect());
 }
 
 float USideBySideStereoRenderingDevice::GetEyeOffset() {
@@ -119,4 +123,9 @@ void USideBySideStereoRenderingDevice::SetEyeOffset(float eyeOffset) {
 
 void USideBySideStereoRenderingDevice::SetProjectionCenterOffset(float projectionCenterOffset) {
 	ProjectionCenterOffset = projectionCenterOffset;
+}
+
+void USideBySideStereoRenderingDevice::SetShowDebugMessage(bool _newVal)
+{
+	bShowDebugMessage = _newVal;
 }

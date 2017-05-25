@@ -24,7 +24,7 @@ class USideBySideBPLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 
-	UFUNCTION(BlueprintPure, Category = "Output|SbS Plugin", meta = (DisplayName = "Test", Keywords = "Tests"))
+	UFUNCTION(BlueprintPure, Category = "Output|Side-by-Side", meta = (DisplayName = "Test", Keywords = "Tests"))
 	static bool Test();
 
 
@@ -49,4 +49,7 @@ class USideBySideBPLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetProjectionOffset", Keywords = "Set Projection Offset"))
 		static void SetProjectionOffset(float _newProjectionOffset); //Updates the current projection center offset 
+
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetShowDebugMessage", Keywords = "Show Debug Message"))
+		static void SetShowDebugMessage(bool _newVal);
 };

@@ -87,3 +87,15 @@ void USideBySideBPLibrary::SetProjectionOffset(float _newProjectionOffset)
 		tmpDevice->SetProjectionCenterOffset(_newProjectionOffset);
 	}
 }
+
+void USideBySideBPLibrary::SetShowDebugMessage(bool _newVal)
+{
+	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
+	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
+
+
+	if (tmpDevice)
+	{
+		tmpDevice->SetShowDebugMessage(_newVal);
+	}
+}

@@ -18,18 +18,20 @@ public:
 	USideBySideStereoRenderingDevice();
 	~USideBySideStereoRenderingDevice() {};
 
-	virtual void AdjustViewRect(EStereoscopicPass StereoPass, int32& X, int32& Y, uint32& SizeX, uint32& SizeY) const override;
 
 	virtual bool IsStereoEnabled() const override { return true; };
 
 	virtual bool EnableStereo(bool stereo = true) override { return true; };
+
+	virtual void AdjustViewRect(EStereoscopicPass StereoPass, int32& X, int32& Y, uint32& SizeX, uint32& SizeY) const override;
 
 	virtual void CalculateStereoViewOffset(const enum EStereoscopicPass StereoPassType, const FRotator& ViewRotation, const float WorldToMeters, FVector& ViewLocation) override;
 
 	virtual FMatrix GetStereoProjectionMatrix(const enum EStereoscopicPass StereoPassType, const float FOV) const override;
 
 	virtual void InitCanvasFromView(FSceneView* InView, UCanvas* Canvas) override {};
-
+	
+	
 	//TODO test this.
 	virtual void GetEyeRenderParams_RenderThread(const struct FRenderingCompositePassContext& Context, FVector2D& EyeToSrcUVScaleValue, FVector2D& EyeToSrcUVOffsetValue) const;
 
@@ -44,9 +46,13 @@ public:
 	float GetProjectionCenterOffset();
 	void SetProjectionCenterOffset(float projectionCenterOffset);
 
-
-
+	void SetShowDebugMessage(bool _newVal);
 private:
-	float EyeOffset = 0.38000005f;
-	float ProjectionCenterOffset = 0.151976421f / 10.f;
+	//Horizontal spacing of cameras/eyes
+	float EyeOffset = 3.20000005f; //0.38000005f;
+
+	//HorizontalSpacing at near plane
+	float ProjectionCenterOffset = 0.151976421f;// / 10.f;
+
+	bool bShowDebugMessage = true;
 };

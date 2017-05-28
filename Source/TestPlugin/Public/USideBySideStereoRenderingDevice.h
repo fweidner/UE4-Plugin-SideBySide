@@ -52,7 +52,7 @@ private:
 	float EyeOffset = 3.20000005f; //0.38000005f;
 
 	//HorizontalSpacing at near plane
-	float ProjectionCenterOffset = 0.151976421f;// / 10.f;
+	float ProjectionCenterOffset = 0.03f;//0.151976421f;// / 10.f;
 
-	bool bShowDebugMessage = true;
+	bool bShowDebugMessage = false;
 };

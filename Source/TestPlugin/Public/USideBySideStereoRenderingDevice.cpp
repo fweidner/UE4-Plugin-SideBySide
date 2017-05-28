@@ -6,7 +6,7 @@
 #include "UStereoDeviceProvider.h"
 
 USideBySideStereoRenderingDevice::USideBySideStereoRenderingDevice()
-	: FOVInDegrees(50)
+	: FOVInDegrees(115)
 	, Width(2560)
 	, Height(1600)
 {
@@ -44,6 +44,8 @@ void USideBySideStereoRenderingDevice::AdjustViewRect(EStereoscopicPass StereoPa
 	{
 		GEngine->AddOnScreenDebugMessage(12, 1.f, FColor::Green, FString::Printf(TEXT("EyeOffset: %f"), EyeOffset));
 		GEngine->AddOnScreenDebugMessage(13, 1.f, FColor::Green, FString::Printf(TEXT("ProjectionCenterOffset: %f"), ProjectionCenterOffset));
+		GEngine->AddOnScreenDebugMessage(14, 1.f, FColor::Green, FString::Printf(TEXT("Height: %ld"), Height));
+		GEngine->AddOnScreenDebugMessage(15, 1.f, FColor::Green, FString::Printf(TEXT("Width: %ld"), Width));
 	}
 
 }

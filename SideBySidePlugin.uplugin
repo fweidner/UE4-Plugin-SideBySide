@@ -1,24 +1,25 @@
 {
-	"FileVersion": 3,
-	"Version": 1,
-	"VersionName": "1.0",
-	"FriendlyName": "Side-by-Side Plugin",
-	"Description": "",
-	"Category": "Virtual Reality",
-	"CreatedBy": "Florian Weidner",
-	"CreatedByURL": "http://www.tu-ilmenau.de/vwdg",
-	"DocsURL": "",
-	"MarketplaceURL": "",
-	"SupportURL": "",
-	"CanContainContent": true,
-	"IsBetaVersion": false,
-	"Installed": true,
-	"Modules": [
+	"FileVersion" : 3,
+	"Version" : 1,
+	"VersionName" : "1.0",
+	"FriendlyName" : "Side-by-Side Plugin",
+	"Description" : "",
+	"Category" : "Virtual Reality",
+	"CreatedBy" : "Florian Weidner",
+	"CreatedByURL" : "http://www.tu-ilmenau.de/vwdg",
+	"DocsURL" : "",
+	"MarketplaceURL" : "",
+	"SupportURL" : "",
+	"CanContainContent" : true,
+	"IsBetaVersion" : false,
+	"Installed" : true,
+	"RequiresBuildPlatform" : false,
+	"Modules" :
+	[
 		{
-			"Name": "SideBySidePlugin",
-			"Type": "Developer",
-			"LoadingPhase": "Default"
+			"Name" : "SideBySidePlugin",
+			"Type" : "Developer",
+			"LoadingPhase" : "Default"
 		}
-	],
-	"RequiresBuildPlatform": false
+	]
 }

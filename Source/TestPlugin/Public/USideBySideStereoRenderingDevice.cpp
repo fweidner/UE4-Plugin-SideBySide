@@ -108,7 +108,7 @@ void USideBySideStereoRenderingDevice::RenderTexture_RenderThread(FRHICommandLis
 	RHICmdList.SetBlendState(TStaticBlendState<>::GetRHI());
 	RHICmdList.SetRasterizerState(TStaticRasterizerState<>::GetRHI());
 	RHICmdList.SetDepthStencilState(TStaticDepthStencilState<false, CF_Always>::GetRHI());
-	RHICmdList.ClearColorTexture(BackBuffer, FLinearColor::Black, FIntRect());
+	//RHICmdList.ClearColorTexture(BackBuffer, FLinearColor::Black, FIntRect());
 }
 
 float USideBySideStereoRenderingDevice::GetEyeOffset() {

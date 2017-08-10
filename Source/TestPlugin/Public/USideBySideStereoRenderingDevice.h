@@ -2,7 +2,6 @@
 
 #pragma once
 #include "StereoRendering.h"
-#include "ScreenRendering.h"
 #include "RHIStaticStates.h"
 
 /**

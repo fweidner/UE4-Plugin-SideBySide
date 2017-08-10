@@ -4,8 +4,8 @@ using UnrealBuildTool;
 
 public class SideBySidePlugin : ModuleRules
 {
-	public SideBySidePlugin(TargetInfo Target)
-	{
+	public SideBySidePlugin(ReadOnlyTargetRules Target) : base(Target)
+    {
 		
 		PublicIncludePaths.AddRange(
 			new string[] {

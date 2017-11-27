@@ -1,6 +1,7 @@
+#include "CustomGameEngine.h"
+
 #include "SideBySidePlugin.h"
 
-#include "CustomGameEngine.h"
 
 #include "USideBySideStereoRenderingDevice.h"
 #include "Engine.h"

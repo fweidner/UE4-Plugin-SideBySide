@@ -15,7 +15,7 @@ public:
 	int32 Width, Height;
 
 	USideBySideStereoRenderingDevice();
-	~USideBySideStereoRenderingDevice() {};
+	virtual ~USideBySideStereoRenderingDevice() {};
 
 
 	virtual bool IsStereoEnabled() const override { return true; };
@@ -24,19 +24,16 @@ public:
 
 	virtual void AdjustViewRect(EStereoscopicPass StereoPass, int32& X, int32& Y, uint32& SizeX, uint32& SizeY) const override;
 
-	virtual void CalculateStereoViewOffset(const enum EStereoscopicPass StereoPassType, const FRotator& ViewRotation, const float WorldToMeters, FVector& ViewLocation) override;
+	virtual void CalculateStereoViewOffset(const enum EStereoscopicPass StereoPassType, FRotator& ViewRotation, const float WorldToMeters, FVector& ViewLocation);
 
-	virtual FMatrix GetStereoProjectionMatrix(const enum EStereoscopicPass StereoPassType, const float FOV) const override;
+	virtual FMatrix GetStereoProjectionMatrix(const enum EStereoscopicPass StereoPassType) const;
 
 	virtual void InitCanvasFromView(FSceneView* InView, UCanvas* Canvas) override {};
 	
 	
-	//TODO test this.
 	virtual void GetEyeRenderParams_RenderThread(const struct FRenderingCompositePassContext& Context, FVector2D& EyeToSrcUVScaleValue, FVector2D& EyeToSrcUVOffsetValue) const;
 
-	virtual bool ShouldUseSeparateRenderTarget() const override;
-
-	virtual void RenderTexture_RenderThread(FRHICommandListImmediate& RHICmdList, FTexture2DRHIParamRef BackBuffer, FTexture2DRHIParamRef SrcTexture) const override;
+	virtual void RenderTexture_RenderThread(FRHICommandListImmediate& RHICmdList, FRHITexture2D* BackBuffer, FRHITexture2D* SrcTexture, FVector2D WindowSize) const override;
 
 	// Custom methods
 	float GetEyeOffset();

@@ -1,6 +1,7 @@
+#include "UStereoDeviceProvider.h"
+
 #include "SideBySidePlugin.h"
 
-#include "UStereoDeviceProvider.h"
 
 #include <assert.h>     /* assert */
 #include "Engine/Engine.h"

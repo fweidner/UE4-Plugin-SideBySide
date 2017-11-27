@@ -6,8 +6,9 @@ public class SideBySidePlugin : ModuleRules
 {
 	public SideBySidePlugin(ReadOnlyTargetRules Target) : base(Target)
     {
-		
-		PublicIncludePaths.AddRange(
+        PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+
+        PublicIncludePaths.AddRange(
 			new string[] {
                 "SideBySidePlugin/Public"
 				// ... add public include paths required here ...

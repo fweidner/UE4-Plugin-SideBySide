@@ -1,6 +1,7 @@
+#include "USideBySideBPLibrary.h"
+
 #include "SideBySidePlugin.h"
 
-#include "USideBySideBPLibrary.h"
 #include "UStereoDeviceProvider.h"
 #include "USideBySideStereoRenderingDevice.h"
 

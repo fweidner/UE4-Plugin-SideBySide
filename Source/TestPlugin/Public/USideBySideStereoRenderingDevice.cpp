@@ -1,7 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
+#include "USideBySideStereoRenderingDevice.h"
+
 #include "SideBySidePlugin.h"
 
-#include "USideBySideStereoRenderingDevice.h"
 #include "Engine.h"
 #include "UStereoDeviceProvider.h"
 
@@ -50,7 +51,7 @@ void USideBySideStereoRenderingDevice::AdjustViewRect(EStereoscopicPass StereoPa
 
 }
 
-void USideBySideStereoRenderingDevice::CalculateStereoViewOffset(const enum EStereoscopicPass StereoPassType, const FRotator& ViewRotation, const float WorldToMeters, FVector& ViewLocation)
+void USideBySideStereoRenderingDevice::CalculateStereoViewOffset(const enum EStereoscopicPass StereoPassType, FRotator& ViewRotation, const float WorldToMeters, FVector& ViewLocation)
 {
 	if (StereoPassType != eSSP_FULL)
 	{
@@ -59,7 +60,7 @@ void USideBySideStereoRenderingDevice::CalculateStereoViewOffset(const enum ESte
 	}
 }
 
-FMatrix USideBySideStereoRenderingDevice::GetStereoProjectionMatrix(const enum EStereoscopicPass StereoPassType, const float FOV) const
+FMatrix USideBySideStereoRenderingDevice::GetStereoProjectionMatrix(const enum EStereoscopicPass StereoPassType) const
 {
 
 	const float PassProjectionOffset = (StereoPassType == eSSP_LEFT_EYE) ? ProjectionCenterOffset : -ProjectionCenterOffset;
@@ -87,14 +88,14 @@ void USideBySideStereoRenderingDevice::GetEyeRenderParams_RenderThread(const str
 	EyeToSrcUVScaleValue = FVector2D(1.0f, 1.0f);
 }
 
-bool USideBySideStereoRenderingDevice::ShouldUseSeparateRenderTarget() const
-{
-	// should return true to test rendering into a separate texture; however, there is a bug
-	// in DrawNormalizedScreenQuad (FScreenVS shader), TTP #338597, so false for now.
-	return false; //true; 
-}
+// bool USideBySideStereoRenderingDevice::ShouldUseSeparateRenderTarget() const
+// {
+// 	// should return true to test rendering into a separate texture; however, there is a bug
+// 	// in DrawNormalizedScreenQuad (FScreenVS shader), TTP #338597, so false for now.
+// 	return false; //true; 
+// }
 
-void USideBySideStereoRenderingDevice::RenderTexture_RenderThread(FRHICommandListImmediate& RHICmdList, FTexture2DRHIParamRef BackBuffer, FTexture2DRHIParamRef SrcTexture) const
+void USideBySideStereoRenderingDevice::RenderTexture_RenderThread(FRHICommandListImmediate& RHICmdList, FRHITexture2D* BackBuffer, FRHITexture2D* SrcTexture, FVector2D WindowSize) const
 {
 	check(IsInRenderingThread());
 

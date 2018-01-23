@@ -27,7 +27,7 @@ class USideBySideBPLibrary : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintPure, Category = "Output|Side-by-Side", meta = (DisplayName = "Test", Keywords = "Tests"))
 	static bool Test();
 
-
+	//////////////////////////////////////////////////////////////////////////
 	//Eye offset
 	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetEyeOffset with delta", Keywords = "Set Eye Offset Delta"))
 		static void SetEyeOffsetWithDelta(float _deltaOffset); //Sets the current IPD x 0.5 using a delta
@@ -38,9 +38,8 @@ class USideBySideBPLibrary : public UBlueprintFunctionLibrary
 	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetEyeOffset", Keywords = "Get Eye Offset Delta"))
 		static void SetEyeOffset(float _newEyeOffset); //Updates the current IPD x 0.5
 
-
+	//////////////////////////////////////////////////////////////////////////
 	//Projection offset
-
 	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetProjectionOffset with delta", Keywords = "Set Projection Offset Delta"))
 		static void SetProjectionOffsetWithDelta(float _deltaOffset); //Sets the current projection center offset using a delta
 
@@ -52,4 +51,23 @@ class USideBySideBPLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetShowDebugMessage", Keywords = "Show Debug Message"))
 		static void SetShowDebugMessage(bool _newVal);
+
+	//////////////////////////////////////////////////////////////////////////
+	//FOV
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Increment FOV", Keywords = "Increment FOV"))
+		static void IncFOV(float _FOVOffset); 
+
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Decrement FOV", Keywords = "Decrement FOV"))
+		static void DecFOV(float _FOVOffset); 
+
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Get FOV", Keywords = "Get FOV"))
+		static float GetFOV();
+
+	//////////////////////////////////////////////////////////////////////////
+	//Stereo mode
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Enable Stereo", Keywords = "Enable Stereo 3D"))
+		static void EnableStereo(bool _stereo);
+
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Is Stereo Enabled", Keywords = "Is Enabled Stereo 3D"))
+		static bool IsStereoEnabled();
 };

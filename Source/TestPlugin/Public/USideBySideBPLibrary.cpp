@@ -100,3 +100,61 @@ void USideBySideBPLibrary::SetShowDebugMessage(bool _newVal)
 		tmpDevice->SetShowDebugMessage(_newVal);
 	}
 }
+
+void USideBySideBPLibrary::IncFOV(float _FOVOffset)
+{
+	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
+	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
+
+	if (tmpDevice)
+	{
+		tmpDevice->IncFOV(_FOVOffset);
+	}
+}
+
+void USideBySideBPLibrary::DecFOV(float _FOVOffset)
+{
+	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
+	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
+
+	if (tmpDevice)
+	{
+		tmpDevice->DecFOV(_FOVOffset);
+	}
+}
+
+float USideBySideBPLibrary::GetFOV()
+{
+	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
+	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
+	float res = 0.f;
+	if (tmpDevice)
+	{
+		res = tmpDevice->GetFOV();
+	}
+
+	return res;
+}
+
+void USideBySideBPLibrary::EnableStereo(bool _stereo)
+{
+	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
+	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
+
+	if (tmpDevice)
+	{
+		tmpDevice->EnableStereo(_stereo);
+	}
+}
+
+bool USideBySideBPLibrary::IsStereoEnabled() 
+{
+	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
+	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
+	bool res = true;
+	if (tmpDevice)
+	{
+		res = tmpDevice->IsStereoEnabled();
+	}
+	return res;
+}

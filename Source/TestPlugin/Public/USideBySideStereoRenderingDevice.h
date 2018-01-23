@@ -18,9 +18,9 @@ public:
 	virtual ~USideBySideStereoRenderingDevice() {};
 
 
-	virtual bool IsStereoEnabled() const override { return true; };
+	virtual bool IsStereoEnabled() const override;
 
-	virtual bool EnableStereo(bool stereo = true) override { return true; };
+	virtual bool EnableStereo(bool stereo = true);
 
 	virtual void AdjustViewRect(EStereoscopicPass StereoPass, int32& X, int32& Y, uint32& SizeX, uint32& SizeY) const override;
 
@@ -43,6 +43,12 @@ public:
 	void SetProjectionCenterOffset(float projectionCenterOffset);
 
 	void SetShowDebugMessage(bool _newVal);
+
+	//FOV
+	void IncFOV(float _FOVOffset);
+	void DecFOV(float _FOVOffset);
+	float GetFOV() const;
+
 private:
 	//Horizontal spacing of cameras/eyes
 	float EyeOffset = 3.20000005f; //0.38000005f;
@@ -51,4 +57,8 @@ private:
 	float ProjectionCenterOffset = 0.03f;//0.151976421f;// / 10.f;
 
 	bool bShowDebugMessage = false;
+
+	bool bIs3D = false;
+
+	int32 Eye = 0; // 0 = left, 1 = right ; 2 = cyclops
 };

@@ -7,7 +7,7 @@
 #include "UStereoDeviceProvider.h"
 
 USideBySideStereoRenderingDevice::USideBySideStereoRenderingDevice()
-	: FOVInDegrees(115)
+	: FOVInDegrees(90)
 	, Width(2560)
 	, Height(1600)
 {
@@ -63,23 +63,63 @@ void USideBySideStereoRenderingDevice::CalculateStereoViewOffset(const enum ESte
 FMatrix USideBySideStereoRenderingDevice::GetStereoProjectionMatrix(const enum EStereoscopicPass StereoPassType) const
 {
 
-	const float PassProjectionOffset = (StereoPassType == eSSP_LEFT_EYE) ? ProjectionCenterOffset : -ProjectionCenterOffset;
-
-	const float HalfFov = FMath::DegreesToRadians(FOVInDegrees) / 2.f;
 	const float InWidth = Width;
 	const float InHeight = Height;
-	const float XS = 1.0f / tan(HalfFov);
-	const float YS = InWidth / tan(HalfFov) / InHeight;
-
 	const float InNearZ = GNearClippingPlane;
-	return FMatrix(
-		FPlane(XS, 0.0f, 0.0f, 0.0f),
-		FPlane(0.0f, YS, 0.0f, 0.0f),
-		FPlane(0.0f, 0.0f, 0.0f, 1.0f),
-		FPlane(0.0f, 0.0f, InNearZ, 0.0f))
+	float PassProjectionOffset = 0;
 
-		* FTranslationMatrix(FVector(PassProjectionOffset, 0, 0));
+	if (bIs3D)
+	{
+		PassProjectionOffset = (StereoPassType == eSSP_LEFT_EYE) ? ProjectionCenterOffset : -ProjectionCenterOffset;
 
+		const float HalfFov = FMath::DegreesToRadians(FOVInDegrees) / 2.f;
+		const float XS = 1.0f / tan(HalfFov);
+		const float YS = InWidth / tan(HalfFov) / InHeight;
+
+		return FMatrix(
+			FPlane(XS, 0.0f, 0.0f, 0.0f),
+			FPlane(0.0f, YS, 0.0f, 0.0f),
+			FPlane(0.0f, 0.0f, 0.0f, 1.0f),
+			FPlane(0.0f, 0.0f, InNearZ, 0.0f))
+			* FTranslationMatrix(FVector(PassProjectionOffset, 0, 0)
+			);
+
+	}
+	else //2D
+	{
+		
+		if (Eye == 0) //which view to render
+		{
+			PassProjectionOffset = ProjectionCenterOffset;
+			UE_LOG(LogTemp, Log, TEXT("0"));
+		}
+		else if (Eye == 1)
+		{
+			PassProjectionOffset = -ProjectionCenterOffset;
+			UE_LOG(LogTemp, Log, TEXT("1"));
+		}
+		else //cyclops option
+		{
+			PassProjectionOffset = 0;
+			UE_LOG(LogTemp, Log, TEXT("2"));
+		}
+
+		
+		UE_LOG(LogTemp, Log, TEXT("PassProjectionOffset: %d"), PassProjectionOffset);
+
+		//FOV is not half FOV
+		const float FOV = FMath::DegreesToRadians(FOVInDegrees);
+		const float XS = 1.0f / tan(FOV);
+		const float YS = InWidth / tan(FOV) / InHeight;
+
+		return FMatrix(
+			FPlane(XS, 0.0f, 0.0f, 0.0f),
+			FPlane(0.0f, YS, 0.0f, 0.0f),
+			FPlane(0.0f, 0.0f, 0.0f, 1.0f),
+			FPlane(0.0f, 0.0f, InNearZ, 0.0f))
+			* FTranslationMatrix(FVector(PassProjectionOffset, 0, 0)
+			);
+	}
 }
 
 void USideBySideStereoRenderingDevice::GetEyeRenderParams_RenderThread(const struct FRenderingCompositePassContext& Context, FVector2D& EyeToSrcUVScaleValue, FVector2D& EyeToSrcUVOffsetValue) const
@@ -131,4 +171,33 @@ void USideBySideStereoRenderingDevice::SetProjectionCenterOffset(float projectio
 void USideBySideStereoRenderingDevice::SetShowDebugMessage(bool _newVal)
 {
 	bShowDebugMessage = _newVal;
+}
+
+//////////////////////////////////////////////////////////////////////////
+void USideBySideStereoRenderingDevice::IncFOV(float _FOVOffset)
+{
+	FOVInDegrees += _FOVOffset;
+}
+
+void USideBySideStereoRenderingDevice::DecFOV(float _FOVOffset)
+{
+	FOVInDegrees -= _FOVOffset;
+}
+
+float USideBySideStereoRenderingDevice::GetFOV() const
+{
+	return FOVInDegrees;
+}
+
+//////////////////////////////////////////////////////////////////////////
+bool USideBySideStereoRenderingDevice::IsStereoEnabled() const
+{
+	return bIs3D;
+}
+
+bool USideBySideStereoRenderingDevice::EnableStereo(bool stereo)
+{
+	bool oldStereoState = bIs3D;
+	bIs3D = stereo;
+	return oldStereoState;
 }

@@ -10,7 +10,7 @@ If you have a Cpp project, continue with step 5.
 4. Close Unreal Editor
 
 ## Downloading the plugin
-5. If you don't have one, create a folder called "Plugin" in your project directory (where your content folder is located).
+5. If you don't have one, create a folder called "Plugin" in your project directory (where your content folder is located). If you have one, go to step 10.
 6. Checkout the project (or download the release) and copy the plugin to this folder
 7. Right-click on your *.uproject  file and generate Visual Studio Project files.
 

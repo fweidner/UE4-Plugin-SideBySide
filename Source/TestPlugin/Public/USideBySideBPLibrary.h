@@ -24,52 +24,53 @@ class USideBySideBPLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 
-	UFUNCTION(BlueprintPure, Category = "Car2IXS|Side-by-Side", meta = (DisplayName = "Test", Keywords = "Tests"))
+	UFUNCTION(BlueprintPure, Category = "Output|Side-by-Side", meta = (DisplayName = "Test", Keywords = "Tests"))
 	static bool Test();
 
 	//////////////////////////////////////////////////////////////////////////
 	//Eye offset
-	UFUNCTION(BlueprintCallable, Category = "Car2IXS|Side-by-Side", meta = (DisplayName = "SetEyeOffset with delta", Keywords = "Set Eye Offset Delta"))
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetEyeOffset with delta", Keywords = "Set Eye Offset Delta"))
 		static void SetEyeOffsetWithDelta(float _deltaOffset); //Sets the current IPD x 0.5 using a delta
 
-	UFUNCTION(BlueprintCallable, Category = "Car2IXS|Side-by-Side", meta = (DisplayName = "GetEyeOffset", Keywords = "Get Eye Offset"))
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "GetEyeOffset", Keywords = "Get Eye Offset"))
 		static float GetEyeOffset(); //Returns the current IPD x 0.5
 
-	UFUNCTION(BlueprintCallable, Category = "Car2IXS|Side-by-Side", meta = (DisplayName = "SetEyeOffset", Keywords = "Get Eye Offset Delta"))
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetEyeOffset", Keywords = "Get Eye Offset Delta"))
 		static void SetEyeOffset(float _newEyeOffset); //Updates the current IPD x 0.5
 
 	//////////////////////////////////////////////////////////////////////////
 	//Projection offset
-	UFUNCTION(BlueprintCallable, Category = "Car2IXS|Side-by-Side", meta = (DisplayName = "SetProjectionOffset with delta", Keywords = "Set Projection Offset Delta"))
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetProjectionOffset with delta", Keywords = "Set Projection Offset Delta"))
 		static void SetProjectionOffsetWithDelta(float _deltaOffset); //Sets the current projection center offset using a delta
 
 	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "GetProjectionOffset", Keywords = "Get Projection Offset"))
 		static float GetProjectionOffset(); //returns the current projection center offset 
 
-	UFUNCTION(BlueprintCallable, Category = "Car2IXS|Side-by-Side", meta = (DisplayName = "SetProjectionOffset", Keywords = "Set Projection Offset"))
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetProjectionOffset", Keywords = "Set Projection Offset"))
 		static void SetProjectionOffset(float _newProjectionOffset); //Updates the current projection center offset 
 
-	UFUNCTION(BlueprintCallable, Category = "Car2IXS|Side-by-Side", meta = (DisplayName = "SetShowDebugMessage", Keywords = "Show Debug Message"))
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetShowDebugMessage", Keywords = "Show Debug Message"))
 		static void SetShowDebugMessage(bool _newVal);
 
 	//////////////////////////////////////////////////////////////////////////
 	//FOV
-	UFUNCTION(BlueprintCallable, Category = "Car2IXS|Side-by-Side", meta = (DisplayName = "Increment FOV", Keywords = "Increment FOV"))
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Increment FOV", Keywords = "Increment FOV"))
 		static void IncFOV(float _FOVOffset); 
 
-	UFUNCTION(BlueprintCallable, Category = "Car2IXS|Side-by-Side", meta = (DisplayName = "Decrement FOV", Keywords = "Decrement FOV"))
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Decrement FOV", Keywords = "Decrement FOV"))
 		static void DecFOV(float _FOVOffset); 
 
-	UFUNCTION(BlueprintCallable, Category = "Car2IXS|Side-by-Side", meta = (DisplayName = "Get FOV", Keywords = "Get FOV"))
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Get FOV", Keywords = "Get FOV"))
 		static float GetFOV();
 
-	UFUNCTION(BlueprintCallable, Category = "Car2IXS|Side-by-Side", meta = (DisplayName = "Set FOV", Keywords = "Set FOV"))
-		static void SetFOV(float _newFOV);
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Set FOV", Keywords = "Set FOV"))
+		static void SetNewFOV(float _newFOV); //careful, there's also another SetFOV() class of StereoRenderingDevice.
+
 	//////////////////////////////////////////////////////////////////////////
 	//Stereo mode
-	UFUNCTION(BlueprintCallable, Category = "Car2IXS|Side-by-Side", meta = (DisplayName = "Enable Stereo", Keywords = "Enable Stereo 3D"))
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Enable Stereo", Keywords = "Enable Stereo 3D"))
 		static void EnableStereo(bool _stereo);
 
-	UFUNCTION(BlueprintCallable, Category = "Car2IXS|Side-by-Side", meta = (DisplayName = "Is Stereo Enabled", Keywords = "Is Enabled Stereo 3D"))
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Is Stereo Enabled", Keywords = "Is Enabled Stereo 3D"))
 		static bool IsStereoEnabled();
 };

@@ -136,14 +136,13 @@ float USideBySideBPLibrary::GetFOV()
 	return res;
 }
 
-void USideBySideBPLibrary::SetFOV(float _newFOV)
+void USideBySideBPLibrary::SetNewFOV(float _newFOV)
 {
 	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
 	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
-	float res = 0.f;
 	if (tmpDevice)
 	{
-		res = tmpDevice->SetFOV(_newFOV);
+		tmpDevice->SetNewFOV(_newFOV);
 	}
 }
 

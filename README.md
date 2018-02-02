@@ -36,10 +36,13 @@ If you have a Cpp project, continue with step 5.
 ## Enabling the plugin
 22. In the file DefaultEngine.ini in the Config folder of your project, look for the heading: "[/Script/Engine.Engine]"
 23. In this section, add "GameEngine=/Script/SideBySidePlugin.StereoRendering.CustomGameEngine" (without quotes)
+24. You might need to set the CharacterCamera of the Side-By-Side actor in your Level blueprint to the camera of your Pawn.
+25. Don't forget to enable the input for the Side-By-Side_BP :)
 
 When you start your app next time in Standalone Mode, it should be side-by-side.
 Packaging your game should work as well.
 
-28. November 2017: Tested on 4.18.1 with FirstPerson Blueprint template.
+28.11.2017: Tested on 4.18.1 with FirstPerson Blueprint template.
+24.01.2018: Tested on 4.18.3
 
 

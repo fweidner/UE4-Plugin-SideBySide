@@ -189,6 +189,11 @@ float USideBySideStereoRenderingDevice::GetFOV() const
 	return FOVInDegrees;
 }
 
+void USideBySideStereoRenderingDevice::SetFOV(float _newFOV)
+{
+	FOVInDegrees = _newFOV;
+}
+
 //////////////////////////////////////////////////////////////////////////
 bool USideBySideStereoRenderingDevice::IsStereoEnabled() const
 {

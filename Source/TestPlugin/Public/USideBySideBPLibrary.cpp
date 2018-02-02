@@ -136,6 +136,17 @@ float USideBySideBPLibrary::GetFOV()
 	return res;
 }
 
+void USideBySideBPLibrary::SetFOV(float _newFOV)
+{
+	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
+	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
+	float res = 0.f;
+	if (tmpDevice)
+	{
+		res = tmpDevice->SetFOV(_newFOV);
+	}
+}
+
 void USideBySideBPLibrary::EnableStereo(bool _stereo)
 {
 	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();

@@ -48,6 +48,7 @@ public:
 	void IncFOV(float _FOVOffset);
 	void DecFOV(float _FOVOffset);
 	float GetFOV() const;
+	void SetFOV(float _newFOV);
 
 private:
 	//Horizontal spacing of cameras/eyes

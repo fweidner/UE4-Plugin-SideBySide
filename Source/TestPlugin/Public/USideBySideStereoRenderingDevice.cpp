@@ -44,7 +44,7 @@ void USideBySideStereoRenderingDevice::AdjustViewRect(EStereoscopicPass StereoPa
 	if (bShowDebugMessage)
 	{
 		GEngine->AddOnScreenDebugMessage(12, 1.f, FColor::Green, FString::Printf(TEXT("EyeOffset: %f"), EyeOffset));
-		GEngine->AddOnScreenDebugMessage(13, 1.f, FColor::Green, FString::Printf(TEXT("ProjectionCenterOffset: %f"), ProjectionCenterOffset));
+		GEngine->AddOnScreenDebugMessage(13, 1.f, FColor::Green, FString::Printf(TEXT("ProjectionCenterOffset: %f"), ProjectionPlaneOffset));
 		GEngine->AddOnScreenDebugMessage(14, 1.f, FColor::Green, FString::Printf(TEXT("Height: %ld"), Height));
 		GEngine->AddOnScreenDebugMessage(15, 1.f, FColor::Green, FString::Printf(TEXT("Width: %ld"), Width));
 	}
@@ -66,12 +66,9 @@ FMatrix USideBySideStereoRenderingDevice::GetStereoProjectionMatrix(const enum E
 	const float InWidth = Width;
 	const float InHeight = Height;
 	const float InNearZ = GNearClippingPlane;
-	float PassProjectionOffset = 0;
 
 	if (bIs3D)
 	{
-		PassProjectionOffset = (StereoPassType == eSSP_LEFT_EYE) ? ProjectionCenterOffset : -ProjectionCenterOffset;
-
 		const float HalfFov = FMath::DegreesToRadians(FOVInDegrees) / 2.f;
 		const float XS = 1.0f / tan(HalfFov);
 		const float YS = InWidth / tan(HalfFov) / InHeight;
@@ -80,33 +77,11 @@ FMatrix USideBySideStereoRenderingDevice::GetStereoProjectionMatrix(const enum E
 			FPlane(XS, 0.0f, 0.0f, 0.0f),
 			FPlane(0.0f, YS, 0.0f, 0.0f),
 			FPlane(0.0f, 0.0f, 0.0f, 1.0f),
-			FPlane(0.0f, 0.0f, InNearZ, 0.0f))
-			* FTranslationMatrix(FVector(PassProjectionOffset, 0, 0)
-			);
+			FPlane(0.0f, 0.0f, InNearZ, 0.0f));
 
 	}
-	else //2D
+	else //2D 
 	{
-		
-		if (Eye == 0) //which view to render
-		{
-			PassProjectionOffset = ProjectionCenterOffset;
-			UE_LOG(LogTemp, Log, TEXT("0"));
-		}
-		else if (Eye == 1)
-		{
-			PassProjectionOffset = -ProjectionCenterOffset;
-			UE_LOG(LogTemp, Log, TEXT("1"));
-		}
-		else //cyclops option
-		{
-			PassProjectionOffset = 0;
-			UE_LOG(LogTemp, Log, TEXT("2"));
-		}
-
-		
-		UE_LOG(LogTemp, Log, TEXT("PassProjectionOffset: %d"), PassProjectionOffset);
-
 		//FOV is not half FOV
 		const float FOV = FMath::DegreesToRadians(FOVInDegrees);
 		const float XS = 1.0f / tan(FOV);
@@ -116,17 +91,15 @@ FMatrix USideBySideStereoRenderingDevice::GetStereoProjectionMatrix(const enum E
 			FPlane(XS, 0.0f, 0.0f, 0.0f),
 			FPlane(0.0f, YS, 0.0f, 0.0f),
 			FPlane(0.0f, 0.0f, 0.0f, 1.0f),
-			FPlane(0.0f, 0.0f, InNearZ, 0.0f))
-			* FTranslationMatrix(FVector(PassProjectionOffset, 0, 0)
-			);
+			FPlane(0.0f, 0.0f, InNearZ, 0.0f));
 	}
 }
 
-void USideBySideStereoRenderingDevice::GetEyeRenderParams_RenderThread(const struct FRenderingCompositePassContext& Context, FVector2D& EyeToSrcUVScaleValue, FVector2D& EyeToSrcUVOffsetValue) const
-{
-	EyeToSrcUVOffsetValue = FVector2D::ZeroVector;
-	EyeToSrcUVScaleValue = FVector2D(1.0f, 1.0f);
-}
+// void USideBySideStereoRenderingDevice::GetEyeRenderParams_RenderThread(const struct FRenderingCompositePassContext& Context, FVector2D& EyeToSrcUVScaleValue, FVector2D& EyeToSrcUVOffsetValue) const
+// {
+// 	EyeToSrcUVOffsetValue = FVector2D::ZeroVector;
+// 	EyeToSrcUVScaleValue = FVector2D(1.0f, 1.0f);
+// }
 
 // bool USideBySideStereoRenderingDevice::ShouldUseSeparateRenderTarget() const
 // {
@@ -162,16 +135,16 @@ float USideBySideStereoRenderingDevice::GetEyeOffset() {
 	return EyeOffset;
 }
 
-float USideBySideStereoRenderingDevice::GetProjectionCenterOffset() {
-	return ProjectionCenterOffset;
+float USideBySideStereoRenderingDevice::GetProjectionPlaneOffset() {
+	return ProjectionPlaneOffset;
 }
 
 void USideBySideStereoRenderingDevice::SetEyeOffset(float eyeOffset) {
 	EyeOffset = eyeOffset;
 }
 
-void USideBySideStereoRenderingDevice::SetProjectionCenterOffset(float projectionCenterOffset) {
-	ProjectionCenterOffset = projectionCenterOffset;
+void USideBySideStereoRenderingDevice::SetProjectionPlaneOffset(float _projectionplaneoffset) {
+	ProjectionPlaneOffset = _projectionplaneoffset;
 }
 
 void USideBySideStereoRenderingDevice::SetShowDebugMessage(bool _newVal)

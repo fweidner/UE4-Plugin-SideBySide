@@ -65,7 +65,7 @@ void USideBySideBPLibrary::SetEyeOffset(float _newEyeOffset)
 
 }
 
-void USideBySideBPLibrary::SetProjectionOffsetWithDelta(float _deltaOffset)
+void USideBySideBPLibrary::SetProjectionPlaneOffsetWithDelta(float _deltaProjectionOffset)
 {
 #if WITH_EDITOR
 	return;
@@ -77,14 +77,14 @@ void USideBySideBPLibrary::SetProjectionOffsetWithDelta(float _deltaOffset)
 
 	if (tmpDevice)
 	{
-		currOffset = tmpDevice->GetProjectionCenterOffset();
-		tmpDevice->SetProjectionCenterOffset(currOffset + _deltaOffset);
+		currOffset = tmpDevice->GetProjectionPlaneOffset();
+		tmpDevice->SetProjectionPlaneOffset(currOffset + _deltaProjectionOffset);
 	}
 #endif
 	
 }
 
-float USideBySideBPLibrary::GetProjectionOffset()
+float USideBySideBPLibrary::GetProjectionPlaneOffset()
 {
 #if WITH_EDITOR
 	return -1337.f;
@@ -95,14 +95,14 @@ float USideBySideBPLibrary::GetProjectionOffset()
 	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
 
 	if (tmpDevice)
-		res = tmpDevice->GetProjectionCenterOffset();
+		res = tmpDevice->GetProjectionPlaneOffset();
 
 	return res; 
 #endif
 	
 }
 
-void USideBySideBPLibrary::SetProjectionOffset(float _newProjectionOffset)
+void USideBySideBPLibrary::SetProjectionPlaneOffset(float _newProjectionPLaneOffset)
 {
 #if WITH_EDITOR
 	return;
@@ -112,7 +112,7 @@ void USideBySideBPLibrary::SetProjectionOffset(float _newProjectionOffset)
 
 	if (tmpDevice)
 	{
-		tmpDevice->SetProjectionCenterOffset(_newProjectionOffset);
+		tmpDevice->SetProjectionPlaneOffset(_newProjectionPLaneOffset);
 	}
 #endif
 	

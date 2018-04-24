@@ -140,16 +140,22 @@ void USideBySideStereoRenderingDevice::RenderTexture_RenderThread(FRHICommandLis
 	check(IsInRenderingThread());
 
 	//RHISetRenderTarget( BackBuffer, FTextureRHIRef() );
-	SetRenderTarget(RHICmdList, BackBuffer, FTextureRHIRef());
-	const uint32 ViewportWidth = BackBuffer->GetSizeX();
-	const uint32 ViewportHeight = BackBuffer->GetSizeY();
-	RHICmdList.SetViewport(0, 0, 0, ViewportWidth, ViewportHeight, 1.0f);
-
+	// 	SetRenderTarget(RHICmdList, BackBuffer, FTextureRHIRef());
+	// 	const uint32 ViewportWidth = BackBuffer->GetSizeX();
+	// 	const uint32 ViewportHeight = BackBuffer->GetSizeY();
+	// 	RHICmdList.SetViewport(0, 0, 0, ViewportWidth, ViewportHeight, 1.0f);
 
 	//RHICmdList.SetBlendState(TStaticBlendState<>::GetRHI());
 	//RHICmdList.SetRasterizerState(TStaticRasterizerState<>::GetRHI());
 	//RHICmdList.SetDepthStencilState(TStaticDepthStencilState<false, CF_Always>::GetRHI());
 	//RHICmdList.ClearColorTexture(BackBuffer, FLinearColor::Black, FIntRect());
+	// 
+	FRHIRenderTargetView BackBufferView = FRHIRenderTargetView(BackBuffer, ERenderTargetLoadAction::EClear);
+	FRHISetRenderTargetsInfo Info(1, &BackBufferView, FRHIDepthRenderTargetView());
+	RHICmdList.SetRenderTargetsAndClear(Info);
+	const uint32 ViewportWidth = BackBuffer->GetSizeX();
+	const uint32 ViewportHeight = BackBuffer->GetSizeY();
+	RHICmdList.SetViewport(0, 0, 0, ViewportWidth, ViewportHeight, 1.0f);
 }
 
 float USideBySideStereoRenderingDevice::GetEyeOffset() {

@@ -8,6 +8,8 @@
 const float DEFAULT_EYEOFFSET = 0.38000005f;
 const float DEFAULT_PROJECTIONOFFSET = 0.151976421f / 10.f;
 
+static bool bIsEditor = true;
+
 bool USideBySideBPLibrary::Test()
 {
 	return true;
@@ -15,9 +17,9 @@ bool USideBySideBPLibrary::Test()
 
 void USideBySideBPLibrary::SetEyeOffsetWithDelta(float _deltaOffset)
 {
-#if WITH_EDITOR
-	return;
-#else
+	if (bIsEditor)
+		return;
+
 	float currOffset = 3791.f;
 
 	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
@@ -28,15 +30,13 @@ void USideBySideBPLibrary::SetEyeOffsetWithDelta(float _deltaOffset)
 		currOffset = tmpDevice->GetEyeOffset();
 		tmpDevice->SetEyeOffset(currOffset + _deltaOffset);
 	}
-#endif
-	
 }
 
 float USideBySideBPLibrary::GetEyeOffset()
 {
-#if WITH_EDITOR
-	return -1337.f;
-#else
+	if (bIsEditor)
+		return 3791.f;
+
 	float res = 3791.f;
 
 	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
@@ -46,14 +46,13 @@ float USideBySideBPLibrary::GetEyeOffset()
 		res = tmpDevice->GetEyeOffset();
 
 	return res;
-#endif	
 }
 
 void USideBySideBPLibrary::SetEyeOffset(float _newEyeOffset)
 {
-#if WITH_EDITOR
-	return;
-#else
+	if (bIsEditor)
+		return;
+
 	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
 	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
 
@@ -61,15 +60,13 @@ void USideBySideBPLibrary::SetEyeOffset(float _newEyeOffset)
 	{
 		tmpDevice->SetEyeOffset(_newEyeOffset);
 	}
-#endif
-
 }
 
 void USideBySideBPLibrary::SetProjectionPlaneOffsetWithDelta(float _deltaProjectionOffset)
 {
-#if WITH_EDITOR
-	return;
-#else
+	if (bIsEditor)
+		return;
+
 	float currOffset = 3791.f;
 
 	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
@@ -80,15 +77,13 @@ void USideBySideBPLibrary::SetProjectionPlaneOffsetWithDelta(float _deltaProject
 		currOffset = tmpDevice->GetProjectionPlaneOffset();
 		tmpDevice->SetProjectionPlaneOffset(currOffset + _deltaProjectionOffset);
 	}
-#endif
-	
 }
 
 float USideBySideBPLibrary::GetProjectionPlaneOffset()
 {
-#if WITH_EDITOR
-	return -1337.f;
-#else
+	if (bIsEditor)
+		return 3791.f;
+
 	float res = 3791.f;
 
 	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
@@ -97,16 +92,16 @@ float USideBySideBPLibrary::GetProjectionPlaneOffset()
 	if (tmpDevice)
 		res = tmpDevice->GetProjectionPlaneOffset();
 
-	return res; 
-#endif
-	
+	return res;
+
 }
 
 void USideBySideBPLibrary::SetProjectionPlaneOffset(float _newProjectionPLaneOffset)
 {
-#if WITH_EDITOR
-	return;
-#else
+	if (bIsEditor)
+		return;
+
+
 	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
 	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
 
@@ -114,15 +109,14 @@ void USideBySideBPLibrary::SetProjectionPlaneOffset(float _newProjectionPLaneOff
 	{
 		tmpDevice->SetProjectionPlaneOffset(_newProjectionPLaneOffset);
 	}
-#endif
-	
+
 }
 
 void USideBySideBPLibrary::SetShowDebugMessage(bool _newVal)
 {
-#if WITH_EDITOR
-	return;
-#else
+	if (bIsEditor)
+		return;
+
 	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
 	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
 
@@ -131,15 +125,13 @@ void USideBySideBPLibrary::SetShowDebugMessage(bool _newVal)
 	{
 		tmpDevice->SetShowDebugMessage(_newVal);
 	}
-
-#endif	
 }
 
 void USideBySideBPLibrary::IncFOV(float _FOVOffset)
 {
-#if WITH_EDITOR
-	return;
-#else
+	if (bIsEditor)
+		return;
+
 	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
 	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
 
@@ -147,15 +139,13 @@ void USideBySideBPLibrary::IncFOV(float _FOVOffset)
 	{
 		tmpDevice->IncFOV(_FOVOffset);
 	}
-#endif
-	
 }
 
 void USideBySideBPLibrary::DecFOV(float _FOVOffset)
 {
-#if WITH_EDITOR
-	return;
-#else
+	if (bIsEditor)
+		return;
+
 	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
 	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
 
@@ -163,15 +153,13 @@ void USideBySideBPLibrary::DecFOV(float _FOVOffset)
 	{
 		tmpDevice->DecFOV(_FOVOffset);
 	}
-#endif
-	
 }
 
 float USideBySideBPLibrary::GetFOV()
 {
-#if WITH_EDITOR
-	return -1337.f;
-#else
+	if (bIsEditor)
+		return 3791.f;
+
 	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
 	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
 	float res = 0.f;
@@ -180,31 +168,25 @@ float USideBySideBPLibrary::GetFOV()
 		res = tmpDevice->GetFOV();
 	}
 
-	return res; 
-#endif
-	
+	return res;
 }
 
 void USideBySideBPLibrary::SetNewFOV(float _newFOV)
 {
-#if WITH_EDITOR
-	return;
-#else
+	if (bIsEditor)
+		return;
 	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
 	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
 	if (tmpDevice)
 	{
 		tmpDevice->SetNewFOV(_newFOV);
 	}
-#endif
-
 }
 
 void USideBySideBPLibrary::EnableStereo(bool _stereo)
 {
-#if WITH_EDITOR
-	return;
-#else
+	if (bIsEditor)
+		return;
 	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
 	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
 
@@ -212,15 +194,13 @@ void USideBySideBPLibrary::EnableStereo(bool _stereo)
 	{
 		tmpDevice->EnableStereo(_stereo);
 	}
-#endif
-
 }
 
-bool USideBySideBPLibrary::IsStereoEnabled() 
+bool USideBySideBPLibrary::IsStereoEnabled()
 {
-#if WITH_EDITOR
-	return false;
-#else
+	if (bIsEditor)
+		return false;
+
 	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
 	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
 	bool res = true;
@@ -229,5 +209,25 @@ bool USideBySideBPLibrary::IsStereoEnabled()
 		res = tmpDevice->IsStereoEnabled();
 	}
 	return res;
-#endif	
+}
+
+//////////////////////////////////////////////////////////////////////////
+bool USideBySideBPLibrary::SetIsEditor(bool _bIsEditor)
+{
+	bIsEditor = _bIsEditor;
+	return bIsEditor;
+}
+
+bool USideBySideBPLibrary::GetIsEditor()
+{
+	return bIsEditor;
+}
+
+bool USideBySideBPLibrary::ToggleIsEditor()
+{
+	if (bIsEditor)
+		bIsEditor = false;
+	else
+		bIsEditor = true;
+	return bIsEditor;
 }

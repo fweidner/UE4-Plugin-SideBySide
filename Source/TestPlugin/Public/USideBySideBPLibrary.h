@@ -73,4 +73,17 @@ class USideBySideBPLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Is Stereo Enabled", Keywords = "Is Enabled Stereo 3D"))
 		static bool IsStereoEnabled();
+
+	//isEditor
+
+	/**You need to set this variable to true if you test your stuff in the editor viewport. Set it to false if you start your app in an own process. Then you can use stereo.**/
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Set Is In Editor", Keywords = "Set Is In Editor"))
+		static bool SetIsEditor(bool _bIsEditor);
+
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Get Is In Editor", Keywords = "Get Is In Editor"))
+		static bool GetIsEditor();
+
+	/**You need to set this variable to true if you test your stuff in the viewport. Set it to false if you start your app in an own process.**/
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Toggle Is In Editor", Keywords = "Toggle Is In Editor"))
+		static bool ToggleIsEditor();
 };

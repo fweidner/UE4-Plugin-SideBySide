@@ -44,7 +44,7 @@ void USideBySideStereoRenderingDevice::AdjustViewRect(EStereoscopicPass StereoPa
 	if (bShowDebugMessage)
 	{
 		GEngine->AddOnScreenDebugMessage(12, 1.f, FColor::Green, FString::Printf(TEXT("EyeOffset: %f"), EyeOffset));
-		GEngine->AddOnScreenDebugMessage(13, 1.f, FColor::Green, FString::Printf(TEXT("ProjectionCenterOffset: %f"), ProjectionPlaneOffset));
+		//GEngine->AddOnScreenDebugMessage(13, 1.f, FColor::Green, FString::Printf(TEXT("ProjectionCenterOffset: %f"), ProjectionPlaneOffset));
 		GEngine->AddOnScreenDebugMessage(14, 1.f, FColor::Green, FString::Printf(TEXT("Height: %ld"), Height));
 		GEngine->AddOnScreenDebugMessage(15, 1.f, FColor::Green, FString::Printf(TEXT("Width: %ld"), Width));
 	}

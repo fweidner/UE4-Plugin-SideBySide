@@ -53,7 +53,7 @@ void USideBySideStereoRenderingDevice::AdjustViewRect(EStereoscopicPass StereoPa
 
 void USideBySideStereoRenderingDevice::CalculateStereoViewOffset(const enum EStereoscopicPass StereoPassType, FRotator& ViewRotation, const float WorldToMeters, FVector& ViewLocation)
 {
-	if (StereoPassType != eSSP_FULL)
+	if (StereoPassType != eSSP_FULL && StereoPassType != eSSP_MONOSCOPIC_EYE)
 	{
 		const float PassOffset = (StereoPassType == eSSP_LEFT_EYE) ? EyeOffset : -EyeOffset;
 		ViewLocation += ViewRotation.Quaternion().RotateVector(FVector(0, PassOffset, 0));
@@ -93,36 +93,13 @@ FMatrix USideBySideStereoRenderingDevice::GetStereoProjectionMatrix(const enum E
 			FPlane(0.0f, 0.0f, 0.0f, 1.0f),
 			FPlane(0.0f, 0.0f, InNearZ, 0.0f));
 	}
+
 }
-
-// void USideBySideStereoRenderingDevice::GetEyeRenderParams_RenderThread(const struct FRenderingCompositePassContext& Context, FVector2D& EyeToSrcUVScaleValue, FVector2D& EyeToSrcUVOffsetValue) const
-// {
-// 	EyeToSrcUVOffsetValue = FVector2D::ZeroVector;
-// 	EyeToSrcUVScaleValue = FVector2D(1.0f, 1.0f);
-// }
-
-// bool USideBySideStereoRenderingDevice::ShouldUseSeparateRenderTarget() const
-// {
-// 	// should return true to test rendering into a separate texture; however, there is a bug
-// 	// in DrawNormalizedScreenQuad (FScreenVS shader), TTP #338597, so false for now.
-// 	return false; //true; 
-// }
 
 void USideBySideStereoRenderingDevice::RenderTexture_RenderThread(FRHICommandListImmediate& RHICmdList, FRHITexture2D* BackBuffer, FRHITexture2D* SrcTexture, FVector2D WindowSize) const
 {
 	check(IsInRenderingThread());
 
-	//RHISetRenderTarget( BackBuffer, FTextureRHIRef() );
-	// 	SetRenderTarget(RHICmdList, BackBuffer, FTextureRHIRef());
-	// 	const uint32 ViewportWidth = BackBuffer->GetSizeX();
-	// 	const uint32 ViewportHeight = BackBuffer->GetSizeY();
-	// 	RHICmdList.SetViewport(0, 0, 0, ViewportWidth, ViewportHeight, 1.0f);
-
-	//RHICmdList.SetBlendState(TStaticBlendState<>::GetRHI());
-	//RHICmdList.SetRasterizerState(TStaticRasterizerState<>::GetRHI());
-	//RHICmdList.SetDepthStencilState(TStaticDepthStencilState<false, CF_Always>::GetRHI());
-	//RHICmdList.ClearColorTexture(BackBuffer, FLinearColor::Black, FIntRect());
-	// 
 	FRHIRenderTargetView BackBufferView = FRHIRenderTargetView(BackBuffer, ERenderTargetLoadAction::EClear);
 	FRHISetRenderTargetsInfo Info(1, &BackBufferView, FRHIDepthRenderTargetView());
 	RHICmdList.SetRenderTargetsAndClear(Info);

@@ -1,8 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-#include "StereoRendering.h"
 #include "RHIStaticStates.h"
+#include "RHIResources.h" /* for FHRICustomPresent */
+#include "StereoRendering.h"
 
 /**
 *

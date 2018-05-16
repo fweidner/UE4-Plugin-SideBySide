@@ -16,10 +16,13 @@
 	"RequiresBuildPlatform" : false,
 	"Modules" :
 	[
-		{
-			"Name" : "SideBySidePlugin",
-			"Type" : "Runtime",
-			"LoadingPhase" : "Default"
-		}
+    {
+      "Name": "SideBySidePlugin",
+      "Type": "Runtime",
+      "LoadingPhase": "Default",
+      "WhitelistPlatforms": [
+        "Win64"
+      ]
+    }
 	]
 }

@@ -40,14 +40,14 @@ class USideBySideBPLibrary : public UBlueprintFunctionLibrary
 
 	//////////////////////////////////////////////////////////////////////////
 	//Projection offset
-	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetProjectionOffset with delta", Keywords = "Set Projection Offset Delta"))
-		static void SetProjectionOffsetWithDelta(float _deltaOffset); //Sets the current projection center offset using a delta
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetProjectionPlaneOffset with delta", Keywords = "Set Projection Plane Offset Delta"))
+		static void SetProjectionPlaneOffsetWithDelta(float _deltaProjectonPlaneOffset); //Sets the current projection center offset using a delta
 
-	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "GetProjectionOffset", Keywords = "Get Projection Offset"))
-		static float GetProjectionOffset(); //returns the current projection center offset 
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "GetProjectionPlaneOffset", Keywords = "Get Projection Plane Offset"))
+		static float GetProjectionPlaneOffset(); //returns the current projection center offset 
 
-	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetProjectionOffset", Keywords = "Set Projection Offset"))
-		static void SetProjectionOffset(float _newProjectionOffset); //Updates the current projection center offset 
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetProjectionPlaneOffset", Keywords = "Set Projection Plane Offset"))
+		static void SetProjectionPlaneOffset(float _newProjectionPLaneOffset); //Updates the current projection center offset 
 
 	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "SetShowDebugMessage", Keywords = "Show Debug Message"))
 		static void SetShowDebugMessage(bool _newVal);
@@ -73,4 +73,17 @@ class USideBySideBPLibrary : public UBlueprintFunctionLibrary
 
 	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Is Stereo Enabled", Keywords = "Is Enabled Stereo 3D"))
 		static bool IsStereoEnabled();
+
+	//isEditor
+
+	/**You need to set this variable to true if you test your stuff in the editor viewport. Set it to false if you start your app in an own process. Then you can use stereo.**/
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Set Is In Editor", Keywords = "Set Is In Editor"))
+		static bool SetIsEditor(bool _bIsEditor);
+
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Get Is In Editor", Keywords = "Get Is In Editor"))
+		static bool GetIsEditor();
+
+	/**You need to set this variable to true if you test your stuff in the viewport. Set it to false if you start your app in an own process.**/
+	UFUNCTION(BlueprintCallable, Category = "Output|Side-by-Side", meta = (DisplayName = "Toggle Is In Editor", Keywords = "Toggle Is In Editor"))
+		static bool ToggleIsEditor();
 };

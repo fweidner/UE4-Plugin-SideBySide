@@ -1,7 +1,7 @@
 {
 	"FileVersion" : 3,
 	"Version" : 1,
-	"VersionName" : "1.1",
+	"VersionName" : "1.1.2",
 	"FriendlyName" : "Side-by-Side Plugin",
 	"Description" : "",
 	"Category" : "Virtual Reality",
@@ -16,10 +16,13 @@
 	"RequiresBuildPlatform" : false,
 	"Modules" :
 	[
-		{
-			"Name" : "SideBySidePlugin",
-			"Type" : "Runtime",
-			"LoadingPhase" : "Default"
-		}
+    {
+      "Name": "SideBySidePlugin",
+      "Type": "Runtime",
+      "LoadingPhase": "Default",
+      "WhitelistPlatforms": [
+        "Win64"
+      ]
+    }
 	]
 }

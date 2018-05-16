@@ -187,6 +187,7 @@ void USideBySideBPLibrary::EnableStereo(bool _stereo)
 {
 	if (bIsEditor)
 		return;
+
 	UStereoDeviceProvider* tmpProvider = UStereoDeviceProvider::GetInstance();
 	USideBySideStereoRenderingDevice* tmpDevice = tmpProvider->GetStereoDevice();
 

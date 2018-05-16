@@ -30,8 +30,6 @@ public:
 
 	virtual void InitCanvasFromView(FSceneView* InView, UCanvas* Canvas) override {};
 	
-	//virtual void GetEyeRenderParams_RenderThread(const struct FRenderingCompositePassContext& Context, FVector2D& EyeToSrcUVScaleValue, FVector2D& EyeToSrcUVOffsetValue) const;
-
 	virtual void RenderTexture_RenderThread(FRHICommandListImmediate& RHICmdList, FRHITexture2D* BackBuffer, FRHITexture2D* SrcTexture, FVector2D WindowSize) const override;
 
 	float GetEyeOffset();
@@ -50,7 +48,7 @@ public:
 
 private:
 	//Horizontal spacing of cameras/eyes
-	float EyeOffset = 3.20000005f; //0.38000005f;
+	float EyeOffset = 3.25000005f; //0.38000005f;
 
 	//HorizontalSpacing at near plane
 	float ProjectionPlaneOffset = 0.03f;//0.151976421f;// / 10.f;

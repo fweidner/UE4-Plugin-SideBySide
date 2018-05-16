@@ -44,10 +44,10 @@ void USideBySideStereoRenderingDevice::AdjustViewRect(EStereoscopicPass StereoPa
 	if (bShowDebugMessage)
 	{
 		GEngine->AddOnScreenDebugMessage(12, 1.f, FColor::Green, FString::Printf(TEXT("EyeOffset: %f"), EyeOffset));
+		GEngine->AddOnScreenDebugMessage(13, 1.f, FColor::Green, FString::Printf(TEXT("ProjectionPlaneOffset: %f"), ProjectionPlaneOffset));
 		GEngine->AddOnScreenDebugMessage(14, 1.f, FColor::Green, FString::Printf(TEXT("Height: %ld"), Height));
 		GEngine->AddOnScreenDebugMessage(15, 1.f, FColor::Green, FString::Printf(TEXT("Width: %ld"), Width));
 	}
-
 }
 
 void USideBySideStereoRenderingDevice::CalculateStereoViewOffset(const enum EStereoscopicPass StereoPassType, FRotator& ViewRotation, const float WorldToMeters, FVector& ViewLocation)
@@ -66,8 +66,12 @@ FMatrix USideBySideStereoRenderingDevice::GetStereoProjectionMatrix(const enum E
 	const float InHeight = Height;
 	const float InNearZ = GNearClippingPlane;
 
+	float PassProjectionPlaneOffset = 0.f;
 	if (bIs3D)
 	{
+		PassProjectionPlaneOffset = (StereoPassType == eSSP_LEFT_EYE) ? ProjectionPlaneOffset : -ProjectionPlaneOffset;
+		
+
 		const float HalfFov = FMath::DegreesToRadians(FOVInDegrees) / 2.f;
 		const float XS = 1.0f / tan(HalfFov);
 		const float YS = InWidth / tan(HalfFov) / InHeight;
@@ -76,7 +80,9 @@ FMatrix USideBySideStereoRenderingDevice::GetStereoProjectionMatrix(const enum E
 			FPlane(XS, 0.0f, 0.0f, 0.0f),
 			FPlane(0.0f, YS, 0.0f, 0.0f),
 			FPlane(0.0f, 0.0f, 0.0f, 1.0f),
-			FPlane(0.0f, 0.0f, InNearZ, 0.0f));
+			FPlane(0.0f, 0.0f, InNearZ, 0.0f))
+			* FTranslationMatrix(FVector(PassProjectionPlaneOffset, 0, 0));
+
 
 	}
 	else //2D 
@@ -92,7 +98,6 @@ FMatrix USideBySideStereoRenderingDevice::GetStereoProjectionMatrix(const enum E
 			FPlane(0.0f, 0.0f, 0.0f, 1.0f),
 			FPlane(0.0f, 0.0f, InNearZ, 0.0f));
 	}
-
 }
 
 void USideBySideStereoRenderingDevice::RenderTexture_RenderThread(FRHICommandListImmediate& RHICmdList, FRHITexture2D* BackBuffer, FRHITexture2D* SrcTexture, FVector2D WindowSize) const

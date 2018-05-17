@@ -7,7 +7,7 @@
 #include "Engine.h"
 
 /*
-wanna use me? add "GameEngine=/Script/TestPlugin.StereoRendering.CustomGameEngine" to DefaultEngine.ini under [/Script/Engine.Engine]
+wanna use me? add "GameEngine=/Script/SideBySidePlugin.StereoRendering.CustomGameEngine" to DefaultEngine.ini under [/Script/Engine.Engine]
 */
 
 bool UCustomGameEngine::InitializeHMDDevice()

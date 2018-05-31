@@ -42,7 +42,24 @@ If you have a Cpp project, continue with step 5.
 When you start your app next time in Standalone Mode, it should be side-by-side.
 Packaging your game should work as well.
 
+## Input controls:
+Restart after updating DefaultInput.ini!
+
++ActionMappings=(ActionName="EyeOffset",Key=One,bShift=False,bCtrl=False,bAlt=True,bCmd=False)
++ActionMappings=(ActionName="ProjectionOffset",Key=Two,bShift=False,bCtrl=False,bAlt=True,bCmd=False)
++ActionMappings=(ActionName="Reset",Key=Three,bShift=False,bCtrl=False,bAlt=True,bCmd=False)
++ActionMappings=(ActionName="Show Debug Messages",Key=Four,bShift=False,bCtrl=False,bAlt=True,bCmd=False)
++ActionMappings=(ActionName="Default 1",Key=Five,bShift=False,bCtrl=False,bAlt=True,bCmd=False)
++ActionMappings=(ActionName="Default 2",Key=Six,bShift=False,bCtrl=False,bAlt=True,bCmd=False)
++ActionMappings=(ActionName="IncFOV",Key=Hyphen,bShift=False,bCtrl=False,bAlt=True,bCmd=False)
++ActionMappings=(ActionName="DecFOV",Key=+,bShift=False,bCtrl=False,bAlt=True,bCmd=False)
++ActionMappings=(ActionName="Toggle Stereo",Key=Seven,bShift=False,bCtrl=False,bAlt=True,bCmd=False)
+
+
+## Works with:
 28.11.2017: Tested on 4.18.1 with FirstPerson Blueprint template.
 24.01.2018: Tested on 4.18.3
+
+
 
 
